@@ -1,0 +1,25 @@
+{
+    "name": "chili-labs/json-patch",
+    "description": "RFC 6902 implementation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Tschinder",
+            "email": "daniel@tschinder.de",
+            "homepage": "http://www.tschinder.de"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "*"
+    },
+    "autoload": {
+        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
