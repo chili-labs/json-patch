@@ -9,17 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace ChiliLabs\JsonPatch\Test;
-
-use ChiliLabs\JsonPatch\Operation\OperationInterface;
+namespace ChiliLabs\JsonPatch\Exception;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-class JsonPatchTest
+class InvalidPathException extends \RuntimeException
 {
-    public function testPatchOnArray()
-    {
-
-    }
 }

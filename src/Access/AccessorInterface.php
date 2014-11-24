@@ -1,29 +1,39 @@
 <?php
 namespace ChiliLabs\JsonPatch\Access;
 
+use ChiliLabs\JsonPointer\JsonPointer;
+
 interface AccessorInterface
 {
     /**
      * @param mixed $document
+     *
      * @return bool
      */
     public function supports($document);
 
     /**
-     * @param string $path
+     * @param mixed       $document
+     * @param JsonPointer $path
+     *
      * @return mixed
      */
-    public function get($path);
+    public function get($document, JsonPointer $path);
 
     /**
-     * @param string $path
-     * @param mixed $value
+     * @param mixed       $document
+     * @param JsonPointer $path
+     * @param mixed       $value
+     *
+     * @return
      */
-    public function set($path, $value);
+    public function set($document, JsonPointer $path, $value);
 
     /**
-     * @param string $path
+     * @param mixed       $document
+     * @param JsonPointer $path
+     *
      * @return bool
      */
-    public function has($path);
+    public function has($document, JsonPointer $path);
 }

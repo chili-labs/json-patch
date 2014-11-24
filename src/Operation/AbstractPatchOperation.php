@@ -11,6 +11,8 @@
 
 namespace ChiliLabs\JsonPatch\Operation;
 
+use ChiliLabs\JsonPointer\JsonPointer;
+
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
@@ -22,10 +24,14 @@ abstract class AbstractPatchOperation implements OperationInterface
     private $path;
 
     /**
-     * @param string $path
+     * @param string|JsonPointer $path
      */
     public function __construct($path)
     {
+        if (is_string($path)) {
+            $path = new JsonPointer($path);
+        }
+
         $this->path = $path;
     }
 }
