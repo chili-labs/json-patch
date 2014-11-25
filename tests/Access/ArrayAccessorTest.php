@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ChiliLabs\JsonPatch\Test;
+namespace ChiliLabs\JsonPatch\Test\Access;
 
 use ChiliLabs\JsonPatch\Access\AccessorInterface;
 use ChiliLabs\JsonPatch\Access\ArrayAccessor;
