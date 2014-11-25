@@ -26,6 +26,7 @@ class JsonPointer
      */
     public function __construct($path)
     {
+        $this->validate($path);
         $this->path = $path;
     }
 
@@ -37,8 +38,9 @@ class JsonPointer
     public static function fromArray($pathParts)
     {
         $pathParts = self::escape($pathParts);
+        $path = '/' . implode('/', $pathParts);
 
-        return new JsonPointer(implode('/', $pathParts));
+        return new JsonPointer($path);
     }
 
     /**
@@ -46,7 +48,10 @@ class JsonPointer
      */
     public function toArray()
     {
-        $pathParts = explode('/', $this->path);
+        if ($this->path === '') {
+            return array();
+        }
+        $pathParts = explode('/', substr($this->path, 1));
 
         return self::unescape($pathParts);
     }
@@ -77,5 +82,15 @@ class JsonPointer
     private static function escape($pathParts)
     {
         return str_replace(array('~', '/'), array('~0', '~1'), $pathParts);
+    }
+
+    /**
+     * @param string $path
+     */
+    private function validate($path)
+    {
+        if ($path !== '' && $path[0] !== '/') {
+            throw new \InvalidArgumentException(sprintf('Invalid Json pointer: %s', $path));
+        }
     }
 }

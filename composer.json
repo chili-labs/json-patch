@@ -14,7 +14,7 @@
     "require-dev": {
     },
     "autoload": {
-        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/" }
+        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/","ChiliLabs\\JsonPointer\\": "src/" }
     },
     "extra": {
         "branch-alias": {

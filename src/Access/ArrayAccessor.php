@@ -11,7 +11,7 @@ class ArrayAccessor implements AccessorInterface
      */
     public function supports($document)
     {
-        return is_array($document);
+        return is_array($document) || $document instanceof \ArrayAccess;
     }
 
     /**
@@ -19,17 +19,16 @@ class ArrayAccessor implements AccessorInterface
      */
     public function get($document, JsonPointer $path)
     {
-        $value = $document;
-        foreach ($path->toArray() as $pathParts) {
-            if (!array_key_exists($pathParts, $value)) {
+        foreach ($path->toArray() as $pathPart) {
+            if (!array_key_exists($pathPart, $document)) {
                 throw new InvalidPathException(
-                    sprintf('The element "%s" in the path "%s" does not exist in the document.', $pathParts, $path)
+                    sprintf('The element "%s" in the path "%s" does not exist in the document.', $pathPart, $path)
                 );
             }
-            $value = $value[$pathParts];
+            $document = $document[$pathPart];
         }
 
-        return $value;
+        return $document;
     }
 
     /**
@@ -57,10 +56,11 @@ class ArrayAccessor implements AccessorInterface
      */
     public function has($document, JsonPointer $path)
     {
-        foreach ($path->toArray() as $pathParts) {
-            if (!array_key_exists($pathParts, $document)) {
+        foreach ($path->toArray() as $pathPart) {
+            if (!array_key_exists($pathPart, $document)) {
                 return false;
             }
+            $document = $document[$pathPart];
         }
 
         return true;
