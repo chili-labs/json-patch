@@ -21,7 +21,7 @@ abstract class AbstractPatchOperation implements OperationInterface
     /**
      * @var string
      */
-    private $path;
+    protected $path;
 
     /**
      * @param string|JsonPointer $path
