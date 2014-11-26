@@ -41,7 +41,7 @@ class AddOperation extends AbstractPatchOperation
     public function __invoke($document, AccessorInterface $accessor)
     {
         if ($accessor->has($document, $this->path)) {
-            throw new OperationException(sprintf('The path "%s" does already exist.', (string)$this->path));
+            throw new OperationException(sprintf('The path "%s" does already exist.', (string) $this->path));
         }
 
         $accessor->set($document, $this->path, $this->value);

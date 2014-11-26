@@ -19,7 +19,6 @@ use ChiliLabs\JsonPointer\Access\Accessor\ArrayAccessor;
  */
 class AddOperationTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testOperation()
     {
         $operation = new AddOperation('/node2', 'new');
