@@ -11,22 +11,21 @@
 
 namespace ChiliLabs\JsonPatch\Operation;
 
-use ChiliLabs\JsonPatch\Access\AccessorInterface;
+use ChiliLabs\JsonPointer\Access\Accessor\AccessorInterface;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
 interface OperationInterface
 {
-    const OPERATION_ADD = 'add';
-    const OPERATION_REMOVE = 'remove';
-    const OPERATION_REPLACE = 'replace';
-    const OPERATION_COPY = 'copy';
-    const OPERATION_MOVE = 'move';
-    const OPERATION_TEST = 'test';
+//    const OPERATION_REMOVE = 'remove';
+//    const OPERATION_REPLACE = 'replace';
+//    const OPERATION_COPY = 'copy';
+//    const OPERATION_MOVE = 'move';
+//    const OPERATION_TEST = 'test';
 
     /**
-     * @param mixed $document
+     * @param mixed             $document
      * @param AccessorInterface $accessor
      *
      * @return mixed

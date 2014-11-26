@@ -11,9 +11,8 @@
 
 namespace ChiliLabs\JsonPatch;
 
-use ChiliLabs\JsonPatch\Access\AccessorInterface;
-use ChiliLabs\JsonPatch\Exception\NoMatchingAccessorException;
 use ChiliLabs\JsonPatch\Exception\OperationException;
+use ChiliLabs\JsonPointer\Access\AccessorFactory;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
@@ -21,16 +20,16 @@ use ChiliLabs\JsonPatch\Exception\OperationException;
 class PatchExecutor
 {
     /**
-     * @var AccessorInterface
+     * @var AccessorFactory
      */
-    private $accessors = array();
+    private $factory;
 
     /**
-     * @param AccessorInterface[] $accessors
+     * @param AccessorFactory $factory
      */
-    public function __construct(array $accessors = array())
+    public function __construct(AccessorFactory $factory)
     {
-        $this->accessors = $accessors;
+        $this->factory = $factory;
     }
 
     /**
@@ -44,31 +43,13 @@ class PatchExecutor
     public function apply(JsonPatch $patch, $document)
     {
         $documentCopy = $this->createCopy($document);
-        $accessor = $this->findMatchingAccessor($documentCopy);
+        $accessor = $this->factory->findAccessorForDocument($documentCopy);
 
         foreach ($patch->getOperations() as $operation) {
             $documentCopy = $operation($documentCopy, $accessor);
         }
 
         return $documentCopy;
-    }
-
-    /**
-     * @param mixed $document
-     *
-     * @return AccessorInterface
-     */
-    private function findMatchingAccessor($document)
-    {
-        foreach ($this->accessors as $accessor) {
-            if ($accessor->supports($document)) {
-                return $accessor;
-            }
-        }
-
-        throw new NoMatchingAccessorException(
-            sprintf('Could not find a matching Accessor. No way to access document of type %s.', gettype($document))
-        );
     }
 
     /**

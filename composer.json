@@ -1,6 +1,6 @@
 {
     "name": "chili-labs/json-patch",
-    "description": "RFC 6902 implementation",
+    "description": "Simple library for applying JSON Patches (RFC 6902) to PHP data structures",
     "license": "MIT",
     "authors": [
         {
@@ -10,11 +10,12 @@
         }
     ],
     "require": {
+        "chili-labs/json-pointer": "1.0.*@dev"
     },
     "require-dev": {
     },
     "autoload": {
-        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/","ChiliLabs\\JsonPointer\\": "src/" }
+        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/" }
     },
     "extra": {
         "branch-alias": {

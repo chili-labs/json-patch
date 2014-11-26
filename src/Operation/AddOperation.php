@@ -11,11 +11,15 @@
 
 namespace ChiliLabs\JsonPatch\Operation;
 
+use ChiliLabs\JsonPointer\Access\Accessor\AccessorInterface;
+
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
 class AddOperation extends AbstractPatchOperation
 {
+    const NAME = 'add';
+
     /**
      * @var mixed
      */
@@ -33,9 +37,8 @@ class AddOperation extends AbstractPatchOperation
     /**
      * {@inheritdoc}
      */
-    public function __invoke($document)
+    public function __invoke($document, AccessorInterface $accessor)
     {
         // TODO
     }
-
 }
