@@ -13,7 +13,7 @@
          bootstrap="tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="Json-Patch Test Suite">
+        <testsuite name="JSONPatch Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
