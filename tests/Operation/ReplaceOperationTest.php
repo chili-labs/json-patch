@@ -11,19 +11,19 @@
 
 namespace ChiliLabs\JsonPatch\Test\Access;
 
-use ChiliLabs\JsonPatch\Operation\AddOperation;
+use ChiliLabs\JsonPatch\Operation\ReplaceOperation;
 use ChiliLabs\JsonPointer\Access\Accessor\ArrayAccessor;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-class AddOperationTest extends \PHPUnit_Framework_TestCase
+class ReplaceOperationTest extends \PHPUnit_Framework_TestCase
 {
     public function testOperation()
     {
-        $operation = new AddOperation('/node2', 'new');
-        $newDocument = $operation(array('node' => 'old'), new ArrayAccessor());
-        $this->assertEquals(array('node' => 'old', 'node2' => 'new'), $newDocument);
+        $operation = new ReplaceOperation('/node2', 'new');
+        $newDocument = $operation(array('node2' => 'old'), new ArrayAccessor());
+        $this->assertEquals(array('node2' => 'new'), $newDocument);
     }
 
     /**
@@ -31,7 +31,7 @@ class AddOperationTest extends \PHPUnit_Framework_TestCase
      */
     public function testOperationWithInvalidPath()
     {
-        $operation = new AddOperation('/node2', 'new');
-        $operation(array('node2' => 'old'), new ArrayAccessor());
+        $operation = new ReplaceOperation('/node2', 'new');
+        $operation(array('node' => 'old'), new ArrayAccessor());
     }
 }
