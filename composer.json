@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "chili-labs/json-pointer": "1.0.*@dev"
+        "chili-labs/json-pointer": "~1.0@dev"
     },
     "require-dev": {
     },

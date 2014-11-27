@@ -35,6 +35,7 @@ class AddOperation extends AbstractPatchOperation
         parent::__construct($path);
         $this->value = $value;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -44,7 +45,7 @@ class AddOperation extends AbstractPatchOperation
             throw new OperationException(sprintf('The path "%s" does already exist.', (string) $this->path));
         }
 
-        $accessor->set($document, $this->path, $this->value);
+        $document = $accessor->add($document, $this->path, $this->value);
 
         return $document;
     }

@@ -17,9 +17,24 @@ use ChiliLabs\JsonPointer\Access\Accessor\AccessorInterface;
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-class RemoveOperation extends AbstractPatchOperation
+class TestOperation extends AbstractPatchOperation
 {
-    const NAME = 'remove';
+    const NAME = 'test';
+
+    /**
+     * @var mixed
+     */
+    private $value;
+
+    /**
+     * @param string $path
+     * @param mixed  $value
+     */
+    public function __construct($path, $value)
+    {
+        parent::__construct($path);
+        $this->value = $value;
+    }
 
     /**
      * {@inheritdoc}
@@ -30,7 +45,10 @@ class RemoveOperation extends AbstractPatchOperation
             throw new OperationException(sprintf('The path "%s" does not exist.', (string) $this->path));
         }
 
-        $document = $accessor->remove($document, $this->path);
+        $value = $accessor->get($document, $this->path);
+        if ($value != $this->value) {
+            throw new OperationException(sprintf('Test failed: Values do not match (%s != %s).', $value, $this->value));
+        }
 
         return $document;
     }
