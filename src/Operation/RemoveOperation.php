@@ -30,7 +30,7 @@ class RemoveOperation extends AbstractPatchOperation
             throw new OperationException(sprintf('The path "%s" does not exist.', (string) $this->path));
         }
 
-        $document = $accessor->remove($document, $this->path);
+        $accessor->remove($document, $this->path);
 
         return $document;
     }

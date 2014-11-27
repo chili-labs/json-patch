@@ -45,7 +45,7 @@ class AddOperation extends AbstractPatchOperation
             throw new OperationException(sprintf('The path "%s" does already exist.', (string) $this->path));
         }
 
-        $document = $accessor->add($document, $this->path, $this->value);
+        $accessor->add($document, $this->path, $this->value);
 
         return $document;
     }

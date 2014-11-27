@@ -45,7 +45,7 @@ class ReplaceOperation extends AbstractPatchOperation
             throw new OperationException(sprintf('The path "%s" does not exist.', (string) $this->path));
         }
 
-        $document = $accessor->set($document, $this->path, $this->value);
+        $accessor->set($document, $this->path, $this->value);
 
         return $document;
     }
