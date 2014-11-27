@@ -11,7 +11,11 @@
 
 namespace ChiliLabs\JsonPatch;
 
+use ChiliLabs\JsonPatch\Operation\AddOperation;
 use ChiliLabs\JsonPatch\Operation\OperationInterface;
+use ChiliLabs\JsonPatch\Operation\RemoveOperation;
+use ChiliLabs\JsonPatch\Operation\ReplaceOperation;
+use ChiliLabs\JsonPatch\Operation\TestOperation;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
@@ -39,30 +43,36 @@ class JsonPatch
         return $this->operations;
     }
 
-//    public static function fromJson($jsonPatch) {
-//        if (is_string($jsonPatch)) {
-//            $jsonPatch = json_decode($jsonPatch, true);
-//        }
-//
-//        $operations = [];
-//
-//        return new static($operations);
-//    }
-//
-//    private static function validateJsonPatch(array $jsonPatch) {
-//        foreach ($jsonPatch as $operation) {
-//
-//        }
-//    }
-//
-//    private static function validateOperation(array $operation) {
-//        foreach ($operation as $key => $value) {
-//            switch ($key) {
-//                case 'op':
-//                    if (!constant('OperationInterface::' . strtoupper($value))) {
-//                        throw new
-//                    }
-//            }
-//        }
-//    }
+    /**
+     * @param string|array $jsonPatch
+     *
+     * @return static
+     */
+    public static function fromJson($jsonPatch)
+    {
+        if (is_string($jsonPatch)) {
+            $jsonPatch = json_decode($jsonPatch, true);
+        }
+
+        $operations = array();
+        // todo better error handling
+        foreach ($jsonPatch as $operation) {
+            switch($operation['op']) {
+                case AddOperation::NAME:
+                    $operations[] = new AddOperation($operation['path'], $operation['value']);
+                    break;
+                case RemoveOperation::NAME:
+                    $operations[] = new RemoveOperation($operation['path']);
+                    break;
+                case ReplaceOperation::NAME:
+                    $operations[] = new ReplaceOperation($operation['path'], $operation['value']);
+                    break;
+                case TestOperation::NAME:
+                    $operations[] = new TestOperation($operation['path'], $operation['value']);
+                    break;
+            }
+        }
+
+        return new static($operations);
+    }
 }
