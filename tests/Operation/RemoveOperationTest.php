@@ -12,17 +12,16 @@
 namespace ChiliLabs\JsonPatch\Test\Access;
 
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
-use ChiliLabs\JsonPointer\Access\Accessor\ArrayAccessor;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-class RemoveOperationTest extends \PHPUnit_Framework_TestCase
+class RemoveOperationTest extends AbstractOperationTest
 {
     public function testOperation()
     {
         $operation = new RemoveOperation('/node2');
-        $newDocument = $operation(array('node' => 123, 'node2' => 'old'), new ArrayAccessor());
+        $newDocument = $operation(array('node' => 123, 'node2' => 'old'), $this->facade);
         $this->assertEquals(array('node' => 123), $newDocument);
     }
 
@@ -32,6 +31,6 @@ class RemoveOperationTest extends \PHPUnit_Framework_TestCase
     public function testOperationWithInvalidPath()
     {
         $operation = new RemoveOperation('/node2');
-        $operation(array('node' => 'old'), new ArrayAccessor());
+        $operation(array('node' => 'old'), $this->facade);
     }
 }

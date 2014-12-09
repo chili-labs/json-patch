@@ -12,7 +12,7 @@
 namespace ChiliLabs\JsonPatch\Operation;
 
 use ChiliLabs\JsonPatch\Exception\OperationException;
-use ChiliLabs\JsonPointer\Access\Accessor\AccessorInterface;
+use ChiliLabs\JsonPointer\Access\AccessFacade;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
@@ -39,13 +39,13 @@ class TestOperation extends AbstractPatchOperation
     /**
      * {@inheritdoc}
      */
-    public function __invoke($document, AccessorInterface $accessor)
+    public function __invoke($document, AccessFacade $access)
     {
-        if (!$accessor->has($document, $this->path)) {
+        if (!$access->isReadable($document, $this->path)) {
             throw new OperationException(sprintf('The path "%s" does not exist.', (string) $this->path));
         }
 
-        $value = $accessor->get($document, $this->path);
+        $value = $access->get($document, $this->path);
         if ($value != $this->value) {
             throw new OperationException(sprintf('Test failed: Values do not match (%s != %s).', $value, $this->value));
         }

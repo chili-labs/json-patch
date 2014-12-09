@@ -12,7 +12,7 @@
 namespace ChiliLabs\JsonPatch\Operation;
 
 use ChiliLabs\JsonPatch\Exception\OperationException;
-use ChiliLabs\JsonPointer\Access\Accessor\AccessorInterface;
+use ChiliLabs\JsonPointer\Access\AccessFacade;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
@@ -39,13 +39,13 @@ class AddOperation extends AbstractPatchOperation
     /**
      * {@inheritdoc}
      */
-    public function __invoke($document, AccessorInterface $accessor)
+    public function __invoke($document, AccessFacade $access)
     {
-        if ($accessor->has($document, $this->path)) {
+        if ($access->isReadable($document, $this->path) && $access->get($document, $this->path) !== null) {
             throw new OperationException(sprintf('The path "%s" does already exist.', (string) $this->path));
         }
 
-        $accessor->add($document, $this->path, $this->value);
+        $access->create($document, $this->path, $this->value);
 
         return $document;
     }

@@ -19,7 +19,7 @@ use ChiliLabs\JsonPointer\JsonPointer;
 abstract class AbstractPatchOperation implements OperationInterface
 {
     /**
-     * @var string
+     * @var JsonPointer
      */
     protected $path;
 
