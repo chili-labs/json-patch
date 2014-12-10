@@ -12,7 +12,7 @@
 namespace ChiliLabs\JsonPatch;
 
 use ChiliLabs\JsonPatch\Exception\OperationException;
-use ChiliLabs\JsonPointer\Access\AccessorFactory;
+use ChiliLabs\JsonPointer\Access\AccessFacade;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
@@ -20,16 +20,16 @@ use ChiliLabs\JsonPointer\Access\AccessorFactory;
 class PatchExecutor
 {
     /**
-     * @var AccessorFactory
+     * @var AccessFacade
      */
-    private $factory;
+    private $facade;
 
     /**
-     * @param AccessorFactory $factory
+     * @param AccessFacade $facade
      */
-    public function __construct(AccessorFactory $factory)
+    public function __construct(AccessFacade $facade)
     {
-        $this->factory = $factory;
+        $this->facade = $facade;
     }
 
     /**
@@ -43,10 +43,9 @@ class PatchExecutor
     public function apply(JsonPatch $patch, $document)
     {
         $documentCopy = $this->createCopy($document);
-        $accessor = $this->factory->findAccessorForDocument($documentCopy);
 
         foreach ($patch->getOperations() as $operation) {
-            $documentCopy = $operation($documentCopy, $accessor);
+            $documentCopy = $operation($documentCopy, $this->facade);
         }
 
         return $documentCopy;
