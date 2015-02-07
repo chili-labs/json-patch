@@ -31,7 +31,6 @@ class PatchExecutorTest extends AbstractOperationTest
         $document = $executor->apply(new JsonPatch(array(new AddOperation('/123', 1))), array());
 
         $this->assertEquals(array('123' => 1), $document);
-
     }
 
     /**
@@ -41,7 +40,6 @@ class PatchExecutorTest extends AbstractOperationTest
     {
         $executor = new PatchExecutor($this->facade);
         $executor->apply(new JsonPatch(array(new TestOperation('/123', 1))), array());
-
     }
 
     public function dataProvider()
