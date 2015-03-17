@@ -1,20 +1,19 @@
+sudo: false
+cache:
+    directories:
+        - $HOME/.composer/cache/files
 language: php
-
 php:
     - 5.3
     - 5.4
     - 5.5
     - 5.6
     - hhvm
-
 before_install:
     - composer require satooshi/php-coveralls --no-update
-
 install:
-    - composer install --prefer-source
-
+    - composer install
 script:
     - phpunit --coverage-clover build/logs/clover.xml
-
 after_success:
     - sh -c "if [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm-nightly" ]; then php vendor/bin/coveralls -v; fi"
