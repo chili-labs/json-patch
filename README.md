@@ -1,7 +1,12 @@
 # JSONPatch (Work in Progress)
 ###### Simple library for applying JSON Patches (RFC 6902) to PHP data structures
 
-[![Latest Stable Version](https://poser.pugx.org/chili-labs/json-patch/v/stable.png)](https://packagist.org/packages/chili-labs/json-patch) [![Latest Unstable Version](https://poser.pugx.org/chili-labs/json-patch/v/unstable.png)](https://packagist.org/packages/chili-labs/json-patch) [![Total Downloads](https://poser.pugx.org/chili-labs/json-patch/downloads.png)](https://packagist.org/packages/chili-labs/json-patch) [![Build Status](https://secure.travis-ci.org/chili-labs/json-patch.png?branch=master)](http://travis-ci.org/chili-labs/json-patch) [![Coverage Status](https://coveralls.io/repos/chili-labs/json-patch/badge.png?branch=master)](https://coveralls.io/r/chili-labs/json-patch?branch=master)
+[![Latest Stable Version](https://img.shields.io/packagist/v/chili-labs/json-patch.svg?style=flat&label=stable)](https://packagist.org/packages/chili-labs/json-patch)
+[![Total Downloads](https://img.shields.io/packagist/dt/chili-labs/json-patch.svg?style=flat)](https://packagist.org/packages/chili-labs/json-patch)
+[![License](https://img.shields.io/packagist/l/chili-labs/json-patch.svg?style=flat)](https://packagist.org/packages/chili-labs/json-patch)
+[![Build Status](https://secure.travis-ci.org/chili-labs/json-patch.png?branch=master)](http://travis-ci.org/chili-labs/json-patch)
+[![Coverage Status](https://img.shields.io/coveralls/chili-labs/json-patch.svg?style=flat)](https://coveralls.io/r/chili-labs/json-patch?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/34e1aae1-f630-425d-8b8b-978297ccb8b4/mini.png)](https://insight.sensiolabs.com/projects/34e1aae1-f630-425d-8b8b-978297ccb8b4)
 
 ## Description
 
