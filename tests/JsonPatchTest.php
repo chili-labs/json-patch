@@ -13,6 +13,7 @@ namespace ChiliLabs\JsonPatch\Test;
 
 use ChiliLabs\JsonPatch\JsonPatch;
 use ChiliLabs\JsonPatch\Operation\AddOperation;
+use ChiliLabs\JsonPatch\Operation\CopyOperation;
 use ChiliLabs\JsonPatch\Operation\MoveOperation;
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
 use ChiliLabs\JsonPatch\Operation\ReplaceOperation;
@@ -46,6 +47,7 @@ class JsonPatchTest extends \PHPUnit_Framework_TestCase
             array(array(new ReplaceOperation('/p', '1')), '[{"op":"replace","path":"/p","value":"1"}]'),
             array(array(new TestOperation('/p', '1')), '[{"op":"test","path":"/p","value":"1"}]'),
             array(array(new MoveOperation('/p', '/s')), '[{"op":"move","from":"/p","path":"/s"}]'),
+            array(array(new CopyOperation('/p', '/s')), '[{"op":"copy","from":"/p","path":"/s"}]'),
         );
     }
 
@@ -56,5 +58,13 @@ class JsonPatchTest extends \PHPUnit_Framework_TestCase
     {
         $patch = JsonPatch::fromJson($data);
         $this->assertEquals($expected, $patch->getOperations());
+    }
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage myoperation
+     */
+    public function testInvalidFromJson()
+    {
+        $patch = JsonPatch::fromJson('[{"op":"myoperation","from":"/p","path":"/s"}]');
     }
 }

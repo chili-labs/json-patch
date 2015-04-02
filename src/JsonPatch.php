@@ -12,6 +12,7 @@
 namespace ChiliLabs\JsonPatch;
 
 use ChiliLabs\JsonPatch\Operation\AddOperation;
+use ChiliLabs\JsonPatch\Operation\CopyOperation;
 use ChiliLabs\JsonPatch\Operation\MoveOperation;
 use ChiliLabs\JsonPatch\Operation\OperationInterface;
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
@@ -56,11 +57,13 @@ class JsonPatch
         }
 
         $operations = array();
-        // todo better error handling
         foreach ($jsonPatch as $operation) {
             switch($operation['op']) {
                 case AddOperation::NAME:
                     $operations[] = new AddOperation($operation['path'], $operation['value']);
+                    break;
+                case CopyOperation::NAME:
+                    $operations[] = new CopyOperation($operation['from'], $operation['path']);
                     break;
                 case MoveOperation::NAME:
                     $operations[] = new MoveOperation($operation['from'], $operation['path']);
@@ -74,6 +77,10 @@ class JsonPatch
                 case TestOperation::NAME:
                     $operations[] = new TestOperation($operation['path'], $operation['value']);
                     break;
+                default:
+                    throw new \InvalidArgumentException(
+                        sprintf('Patch contains invalid operation "%s"', $operation['op'])
+                    );
             }
         }
 
