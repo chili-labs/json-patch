@@ -54,7 +54,7 @@ class PatchExecutor
     /**
      * Creates a copy of the document so the original document is not altered. This is needed
      * to be conform with RFC 6902: "... if any of them (operations) fail then the whole patch
-     * operation should abort ..."
+     * operation should abort ...".
      *
      * @param mixed $document
      *

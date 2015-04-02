@@ -60,7 +60,7 @@ class JsonPatch
 
         $operations = array();
         foreach ($jsonPatch as $operation) {
-            switch($operation['op']) {
+            switch ($operation['op']) {
                 case AddOperation::NAME:
                     $operations[] = new AddOperation($operation['path'], $operation['value']);
                     break;

@@ -24,7 +24,6 @@ use ChiliLabs\JsonPatch\Test\Access\AbstractOperationTest;
  */
 class PatchExecutorTest extends AbstractOperationTest
 {
-
     public function testPatchExecutor()
     {
         $executor = new PatchExecutor($this->facade);

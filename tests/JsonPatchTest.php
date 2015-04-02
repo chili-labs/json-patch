@@ -24,7 +24,6 @@ use ChiliLabs\JsonPatch\Operation\TestOperation;
  */
 class JsonPatchTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testGetSetOperations()
     {
         $patch = new JsonPatch();
