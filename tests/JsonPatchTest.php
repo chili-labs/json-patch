@@ -13,6 +13,7 @@ namespace ChiliLabs\JsonPatch\Test;
 
 use ChiliLabs\JsonPatch\JsonPatch;
 use ChiliLabs\JsonPatch\Operation\AddOperation;
+use ChiliLabs\JsonPatch\Operation\MoveOperation;
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
 use ChiliLabs\JsonPatch\Operation\ReplaceOperation;
 use ChiliLabs\JsonPatch\Operation\TestOperation;
@@ -44,6 +45,7 @@ class JsonPatchTest extends \PHPUnit_Framework_TestCase
             array(array(new RemoveOperation('/p')), '[{"op":"remove","path":"/p"}]'),
             array(array(new ReplaceOperation('/p', '1')), '[{"op":"replace","path":"/p","value":"1"}]'),
             array(array(new TestOperation('/p', '1')), '[{"op":"test","path":"/p","value":"1"}]'),
+            array(array(new MoveOperation('/p', '/s')), '[{"op":"move","from":"/p","path":"/s"}]'),
         );
     }
 

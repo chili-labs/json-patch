@@ -12,6 +12,7 @@
 namespace ChiliLabs\JsonPatch;
 
 use ChiliLabs\JsonPatch\Operation\AddOperation;
+use ChiliLabs\JsonPatch\Operation\MoveOperation;
 use ChiliLabs\JsonPatch\Operation\OperationInterface;
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
 use ChiliLabs\JsonPatch\Operation\ReplaceOperation;
@@ -60,6 +61,9 @@ class JsonPatch
             switch($operation['op']) {
                 case AddOperation::NAME:
                     $operations[] = new AddOperation($operation['path'], $operation['value']);
+                    break;
+                case MoveOperation::NAME:
+                    $operations[] = new MoveOperation($operation['from'], $operation['path']);
                     break;
                 case RemoveOperation::NAME:
                     $operations[] = new RemoveOperation($operation['path']);
