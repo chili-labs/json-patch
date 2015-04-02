@@ -49,6 +49,8 @@ class JsonPatch
      * @param string|array $jsonPatch
      *
      * @return static
+     *
+     * @throws \InvalidArgumentException
      */
     public static function fromJson($jsonPatch)
     {
