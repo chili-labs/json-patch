@@ -1,4 +1,4 @@
-# JSONPatch (Work in Progress)
+# JSONPatch
 ###### Simple library for applying JSON Patches (RFC 6902) to PHP data structures
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/chili-labs/json-patch.svg?style=flat&label=stable)](https://packagist.org/packages/chili-labs/json-patch)
