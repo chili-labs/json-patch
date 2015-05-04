@@ -21,7 +21,7 @@ version:
 
 ## Usage
 
-TBD
+The documentation is work in progress.
 
 ## Tests
 
