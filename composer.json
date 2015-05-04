@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": ">=5.3.3",
+    "php": ">=5.4.0",
     "chili-labs/json-pointer": "~0.1",
     "myclabs/deep-copy": "~1.0"
   },

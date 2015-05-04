@@ -27,12 +27,12 @@ class JsonPatch
     /**
      * @var OperationInterface[]
      */
-    private $operations = array();
+    private $operations = [];
 
     /**
      * @param OperationInterface[] $operations
      */
-    public function __construct(array $operations = array())
+    public function __construct(array $operations = [])
     {
         $this->operations = $operations;
     }
@@ -58,7 +58,7 @@ class JsonPatch
             $jsonPatch = json_decode($jsonPatch, true);
         }
 
-        $operations = array();
+        $operations = [];
         foreach ($jsonPatch as $operation) {
             switch ($operation['op']) {
                 case AddOperation::NAME:
