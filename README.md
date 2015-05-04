@@ -10,7 +10,7 @@
 
 ## Description
 
-TBD
+This library implements the [RFC 6902](https://tools.ietf.org/html/rfc6902) for PHP. Together with the [JSONPointer](https://github.com/chili-labs/json-patch) library it tries to simplify applying json-patches to various php data structures.
 
 ## Installation
 
