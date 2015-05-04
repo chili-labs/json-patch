@@ -11,6 +11,7 @@
 
 namespace ChiliLabs\JsonPatch;
 
+use ChiliLabs\JsonPatch\Copy\CloneInterface;
 use ChiliLabs\JsonPatch\Exception\OperationException;
 use ChiliLabs\JsonPointer\Access\AccessFacade;
 
@@ -25,16 +26,23 @@ class PatchExecutor
     private $facade;
 
     /**
-     * @param AccessFacade $facade
+     * @var CloneInterface
      */
-    public function __construct(AccessFacade $facade)
+    private $clone;
+
+    /**
+     * @param AccessFacade   $facade
+     * @param CloneInterface $clone
+     */
+    public function __construct(AccessFacade $facade, CloneInterface $clone)
     {
         $this->facade = $facade;
+        $this->clone = $clone;
     }
 
     /**
-     * @param JsonPatch $patch
-     * @param mixed     $document
+     * @param JsonPatch    $patch
+     * @param object|array $document
      *
      * @return mixed
      *
@@ -42,30 +50,12 @@ class PatchExecutor
      */
     public function apply(JsonPatch $patch, $document)
     {
-        $documentCopy = $this->createCopy($document);
+        $documentCopy = $this->clone->cloneDocument($document);
 
         foreach ($patch->getOperations() as $operation) {
             $documentCopy = $operation($documentCopy, $this->facade);
         }
 
         return $documentCopy;
-    }
-
-    /**
-     * Creates a copy of the document so the original document is not altered. This is needed
-     * to be conform with RFC 6902: "... if any of them (operations) fail then the whole patch
-     * operation should abort ...".
-     *
-     * @param mixed $document
-     *
-     * @return mixed
-     */
-    private function createCopy($document)
-    {
-        if (is_object($document)) {
-            return clone $document;
-        }
-
-        return $document;
     }
 }

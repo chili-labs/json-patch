@@ -11,6 +11,7 @@
 
 namespace ChiliLabs\JsonPatch\Test;
 
+use ChiliLabs\JsonPatch\Copy\SimpleClone;
 use ChiliLabs\JsonPatch\JsonPatch;
 use ChiliLabs\JsonPatch\Operation\AddOperation;
 use ChiliLabs\JsonPatch\Operation\RemoveOperation;
@@ -26,7 +27,7 @@ class PatchExecutorTest extends AbstractOperationTest
 {
     public function testPatchExecutor()
     {
-        $executor = new PatchExecutor($this->facade);
+        $executor = new PatchExecutor($this->facade, new SimpleClone());
         $document = $executor->apply(new JsonPatch(array(new AddOperation('/123', 1))), array());
 
         $this->assertEquals(array('123' => 1), $document);
@@ -37,7 +38,7 @@ class PatchExecutorTest extends AbstractOperationTest
      */
     public function testPatchExecutorWithException()
     {
-        $executor = new PatchExecutor($this->facade);
+        $executor = new PatchExecutor($this->facade, new SimpleClone());
         $executor->apply(new JsonPatch(array(new TestOperation('/123', 1))), array());
     }
 

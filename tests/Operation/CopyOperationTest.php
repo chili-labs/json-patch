@@ -31,7 +31,7 @@ class CopyOperationTest extends AbstractOperationTest
      */
     public function testOperationWithMissingPath()
     {
-        $operation = new MoveOperation('/node2', '/new');
+        $operation = new CopyOperation('/node2', '/new');
         $operation(array('node' => 'old'), $this->facade);
     }
 
@@ -40,7 +40,7 @@ class CopyOperationTest extends AbstractOperationTest
      */
     public function testOperationWithExistingPath()
     {
-        $operation = new MoveOperation('/node2', '/new');
+        $operation = new CopyOperation('/node2', '/new');
         $operation(array('node2' => 'old', 'new' => 'old'), $this->facade);
     }
 }

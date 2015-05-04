@@ -1,26 +1,26 @@
 {
-    "name": "chili-labs/json-patch",
-    "description": "Simple library for applying JSON Patches (RFC 6902) to PHP data structures",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Daniel Tschinder",
-            "email": "daniel@tschinder.de",
-            "homepage": "http://www.tschinder.de"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "chili-labs/json-pointer": "~0.1"
-    },
-    "require-dev": {
-    },
-    "autoload": {
-        "psr-4": { "ChiliLabs\\JsonPatch\\": "src/" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
+  "name": "chili-labs/json-patch",
+  "description": "Simple library for applying JSON Patches (RFC 6902) to PHP data structures",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Daniel Tschinder",
+      "email": "daniel@tschinder.de",
+      "homepage": "http://www.tschinder.de"
     }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "chili-labs/json-pointer": "~0.1",
+    "myclabs/deep-copy": "~1.0"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": { "ChiliLabs\\JsonPatch\\": "src/" }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
 }
