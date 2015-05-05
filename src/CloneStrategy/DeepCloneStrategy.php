@@ -9,16 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace ChiliLabs\JsonPatch\Copy;
+namespace ChiliLabs\JsonPatch\CloneStrategy;
 
 use DeepCopy\DeepCopy;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-class DeepClone implements CloneInterface
+class DeepCloneStrategy implements CloneStrategyInterface
 {
-
     /**
      * @var DeepCopy
      */

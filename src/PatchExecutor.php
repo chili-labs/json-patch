@@ -11,7 +11,8 @@
 
 namespace ChiliLabs\JsonPatch;
 
-use ChiliLabs\JsonPatch\Copy\CloneInterface;
+use ChiliLabs\JsonPatch\CloneStrategy\CloneStrategyInterface;
+use ChiliLabs\JsonPatch\CloneStrategy\SimpleCloneStrategy;
 use ChiliLabs\JsonPatch\Exception\OperationException;
 use ChiliLabs\JsonPointer\Access\AccessFacade;
 
@@ -26,18 +27,18 @@ class PatchExecutor
     private $facade;
 
     /**
-     * @var CloneInterface
+     * @var CloneStrategyInterface
      */
     private $clone;
 
     /**
-     * @param AccessFacade   $facade
-     * @param CloneInterface $clone
+     * @param AccessFacade           $facade
+     * @param CloneStrategyInterface $clone
      */
-    public function __construct(AccessFacade $facade, CloneInterface $clone)
+    public function __construct(AccessFacade $facade, CloneStrategyInterface $clone = null)
     {
         $this->facade = $facade;
-        $this->clone = $clone;
+        $this->clone = $clone ?: new SimpleCloneStrategy();
     }
 
     /**

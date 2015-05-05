@@ -12,7 +12,6 @@
 namespace ChiliLabs\JsonPatch\Test\Access;
 
 use ChiliLabs\JsonPatch\Operation\CopyOperation;
-use ChiliLabs\JsonPatch\Operation\MoveOperation;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>

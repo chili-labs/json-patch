@@ -9,17 +9,24 @@
  * file that was distributed with this source code.
  */
 
-namespace ChiliLabs\JsonPatch\Copy;
+namespace ChiliLabs\JsonPatch\CloneStrategy;
 
 /**
  * @author Daniel Tschinder <daniel@tschinder.de>
  */
-interface CloneInterface
+class SimpleCloneStrategy implements CloneStrategyInterface
 {
     /**
      * @param mixed $document
      *
      * @return mixed
      */
-    public function cloneDocument($document);
+    public function cloneDocument($document)
+    {
+        if (is_object($document)) {
+            return clone $document;
+        }
+
+        return $document;
+    }
 }
